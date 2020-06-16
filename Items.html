@@ -1,10 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="keyword" content="配件选择">
+    <meta name="description" content="管道选择">
+    <meta name="author" content="MSTIFIY">
     <meta charset="UTF-8">
-    <title>支付界面</title>
+    <title>配件选择</title>
+    <style media="screen">
+        h1{
+            width:300px;
+            height:150px;
+        }
+        .border_element{
+            /*边框样式*/
+            border-color: black;
+            border-style: solid;
+            border-width: 7px;
+        }
+        .introduce_area{
+            display: flex; /*flex 弹性盒模型*/
+            justify-content: space-between;
+        }
+        .introduce_text{
+            width: 700px;
+            height: 260px;
+        }
+        .select_text{
+            width: 200px;
+        }
+        .select_bt{
+            width: 150px;
+            text-align: center;
+        }
+        .font1{
+            font-size: 30px;
+            color: black;
+            /*浏览器在显示字体的时候，依次判断是否支持当前的字体，直到最后的字体系列*/
+            font-family: "黑体","仿宋","宋体",sans-serif;
+            /*首行缩进*/
+            /*em：相对的字符单位（2倍的字体大小）*/
+            text-indent: 2em;
+        }
+        .item{
+            background: deepskyblue;
+            padding: 10px 10px 10px 10px;
+        }
+    </style>
 </head>
-<body>
-<img src="res/images/1.jpg">
+
+<body topmargin="50" leftmargin="80" rightmargin="120">
+<div id="item_1">
+    <div class="item">
+        <div class="introduce_area">
+            <img id="管道" src="res/images/管道.jpg" class="border_element" width="317" height="260" title="管道图片" alt="管道图片" >
+            <div class="border_element introduce_text">
+                <label class="font1">介绍：</label>
+                <label id="管道描述">呼吸机管道，用于连接呼吸机机体和呼吸面罩，引导气流。</label>
+            </div>
+        </div>
+        <br/>
+        <div>
+            <div class="border_element select_text">
+                <label class="font1">价格：</label>
+                <label><b>998.9</b></label>
+            </div><br/>
+            <button class="select_bt" style="font-size: 20px"><b>添加至组装</b></button>
+        </div>
+    </div>
+</div>
+<div id="item_2" style="margin-top: 100px">
+    <div class="item">
+        <div class="introduce_area">
+            <img id="氧气罐" src="res/images/氧气罐.jpg" class="border_element" width="317" height="260" title="氧气罐图片" alt="氧气罐图片" >
+            <div class="border_element introduce_text">
+                <label class="font1">介绍：</label>
+                <label id="氧气罐描述">该模块由氧气罐罐体和气压表组成。
+                    这是罐体（用于储备压缩氧气），这是氧气出口，这是气压表（用于实时检测氧气气压大小）。
+                    当然，对于不需要提供氧气含量的人群，可选择不组装这一模块。
+                    之后，可添加控制模块，对氧气浓度进行调控，以满足不同个体需求。
+                    以及添加报警模块，防止气压异常，引发安全事故。</label>
+            </div>
+        </div>
+        <br/>
+        <div>
+            <div class="border_element select_text">
+                <label class="font1">价格：</label>
+                <label><b>998.9</b></label>
+            </div><br/>
+            <button class="select_bt" style="font-size: 20px"><b>添加至组装</b></button>
+        </div>
+    </div>
+</div>
+<div id="item_3" style="margin-top: 100px">
+    <div class="item">
+        <div class="introduce_area">
+            <img id="温湿度控制器" src="res/images/温湿度控制器.jpg" class="border_element" width="317" height="260" title="温湿度控制器图片" alt="温湿度控制器图片" >
+            <div class="border_element introduce_text">
+                <label class="font1">介绍：</label>
+                <label id="温湿度控制器描述">该模块分为湿化、加热和显示三个部分。
+                    这是进气口，这是出气口，这是纯化水接口，用于添加和更换纯化水，
+                    这是电阻丝（用于加热），气体会经过这个显示屏，它用于实时显示气体湿度和温度。
+                    之后，可添加控制部分，实现使用者对气体湿度和温度的差异化动态调控。
+                </label>
+            </div>
+        </div>
+        <br/>
+        <div>
+            <div class="border_element select_text">
+                <label class="font1">价格：</label>
+                <label><b>998.9</b></label>
+            </div><br/>
+            <button class="select_bt" style="font-size: 20px"><b>添加至组装</b></button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
