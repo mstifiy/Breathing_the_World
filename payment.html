@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>支付界面</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script language="JavaScript" type="text/javascript">
+        function get_value() {
+            let Inf = []
+            let str = window.location.search;   //location.search是从当前URL的?号开始的字符串
+            Inf[0] = str.split("&")[0].replace("?match=","")
+            Inf[1] = str.split("&")[1].replace("price_all=","")
+            return Inf;
+        }
+        function load() {
+            let inf = get_value();
+            let match = inf[0];
+            let price_all = inf[1];
+            let matchs = match.split("")
+            //点击复选框
+            for(let i = 0;i<8;i++){
+                if(matchs[i] === String(1)){
+                    document.getElementById("item_" + (i + 1).toString()).checked = true;
+                }
+                document.getElementById("item_" + (i + 1).toString()).disabled = true;
+            }
+            document.getElementById("price_all").innerText = price_all;
+        }
+    </script>
+</head>
+
+<body class="bg" leftmargin="80" rightmargin="120" background="res/images/bg_img1.jpg" onload="load()">
+<h1 style="font-weight: bold;text-align: center;font-family: 'Copperplate Gothic Bold',sans-serif;font-size: 50px">Breathing the World!</h1>
+<div>
+    <div id="效果展示" style="display: flex">
+        <div>
+            <p><h1 style="text-align: center">效果图</h1>
+            <img src="res/images/8.jpg" border="2" alt="效果图" height="400" width="400">
+        </div>
+        <div style="border-style: solid;margin-left: 50px;height:400px;margin-top:85px;width: 700px">
+            <div>
+                <table class="table">
+                    <thead>
+                        <caption style="font-size: 30px;margin-bottom: 10px;font-weight: bold">选择区</caption>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td ><label>
+                            <input id="item_1" type="checkbox">
+                        </label>管道</td>
+                        <td><label>
+                            <input id="item_2" type="checkbox">
+                        </label>氧气罐</td>
+                    </tr>
+                    <tr>
+                        <td><label>
+                            <input id="item_3" type="checkbox">
+                        </label>温湿度控制器</td>
+                        <td><label>
+                            <input id="item_4" type="checkbox">
+                        </label>便携结构</td>
+                    </tr>
+                    <tr>
+                        <td><label>
+                            <input id="item_5" type="checkbox">
+                        </label>涡轮机呼吸</td>
+                        <td><label>
+                            <input id="item_6" type="checkbox">
+                        </label>出气口</td>
+                    </tr>
+                    <tr>
+                        <td><label>
+                            <input id="item_7" type="checkbox">
+                        </label>面罩</td>
+                        <td><label>
+                            <input id="item_8" type="checkbox">
+                        </label>过滤层</td>
+                    </tr>
+                    </tbody>
+                </table><br>
+                <div style="margin-top: 50px">
+                    <label class="price">总金额：</label>
+                    <label class="price" id="price_all"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <p><h1>支付方式</h1>
+    <button class="pay_way">
+        <input type="image" src="res/images/yinhangkazhifu.png">
+    </button>
+    <button class="pay_way" style="margin-right: 10px">
+        <input type="image" src="res/images/weichat.png">
+    </button>
+</div>
+</body>
+</html>

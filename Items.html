@@ -2,73 +2,88 @@
 <html lang="en">
 <head>
     <meta name="keyword" content="配件选择">
-    <meta name="description" content="管道选择">
+    <meta name="description" content="配件选择">
     <meta name="author" content="MSTIFIY">
     <meta charset="UTF-8">
     <title>配件选择</title>
-    <style media="screen">
-        h1{
-            width:300px;
-            height:150px;
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script language="JavaScript" type="text/javascript">
+
+        let match = Array(8).fill(0)//用于记录配件的选择情况
+
+        //跳转到支付页面
+        function go_payment() {
+            let s = "";
+            for(let i in match){
+                s = s + match[i];
+            }
+            let price_all = document.getElementById("price_all").innerText.toString();
+            window.location.href = "payment.html?match=" + s + "&" + "price_all=" +price_all;//页面间Url传值
         }
-        .border_element{
-            /*边框样式*/
-            border-color: black;
-            border-style: solid;
-            border-width: 7px;
+
+        //显示总价格
+        function show_price_all() {
+            let result = 0;
+            let e;
+            for (let i = 0; i < 8; i++) {//遍历数组
+                if (match[i] === 1) {
+                    e = document.getElementById("price_" + (i + 1));
+                    result = result + Number.parseFloat(e.innerText.toString())
+                }
+            }
+            document.getElementById("price_all").innerText = result.toFixed(2).toString();
         }
-        .introduce_area{
-            display: flex; /*flex 弹性盒模型*/
-            justify-content: space-between;
+
+        //“添加"按钮event
+        function change_bt_state(id) {
+            const e = document.getElementById(id);
+            let num = Number.parseInt(id.toString().replace("select_bt_",""))
+
+            if(e.innerText!=="已添加至组装"){
+                e.style.backgroundColor="deepskyblue";
+                e.style.color="#fff";
+                e.innerText="已添加至组装";
+                e.style.fontSize="20px";
+                e.style.fontWeight="bold";
+                match[num-1] = 1;       //状态值置1，表示选中
+            }
+            else {
+                e.style.backgroundColor="white"
+                e.style.color="#000";
+                e.innerText="添加至组装";
+                e.style.fontSize="20px";
+                e.style.fontWeight="bold";
+                match[num-1] = 0;
+            }
+            show_price_all();
         }
-        .introduce_text{
-            width: 700px;
-            height: 260px;
-        }
-        .select_text{
-            width: 200px;
-        }
-        .select_bt{
-            width: 150px;
-            text-align: center;
-        }
-        .font1{
-            font-size: 30px;
-            color: black;
-            /*浏览器在显示字体的时候，依次判断是否支持当前的字体，直到最后的字体系列*/
-            font-family: "黑体","仿宋","宋体",sans-serif;
-            /*首行缩进*/
-            /*em：相对的字符单位（2倍的字体大小）*/
-            text-indent: 2em;
-        }
-        .item{
-            background: deepskyblue;
-            padding: 10px 10px 10px 10px;
-        }
-    </style>
+    </script>
 </head>
 
-<body topmargin="50" leftmargin="80" rightmargin="120">
-<div id="item_1">
-    <div class="item">
-        <div class="introduce_area">
-            <img id="管道" src="res/images/管道.jpg" class="border_element" width="317" height="260" title="管道图片" alt="管道图片" >
-            <div class="border_element introduce_text">
-                <label class="font1">介绍：</label>
-                <label id="管道描述">呼吸机管道，用于连接呼吸机机体和呼吸面罩，引导气流。</label>
+<body class="bg" background="res/images/bg_img.jpg">
+<h1 style="font-weight: bold;text-align: center;font-family: 'Copperplate Gothic Bold',sans-serif;font-size: 50px">Breathing the World!</h1><br/><br/>
+<h2 style="font-weight: bold;font-size: 40px">配件列表</h2>
+<div id="choose_list">
+    <div id="item_1" style="margin-bottom: 50px">
+        <div class="item">
+            <div class="introduce_area">
+                <img id="管道" src="res/images/管道.jpg" class="border_element" width="317" height="260" title="管道图片" alt="管道图片" >
+                <div class="border_element introduce_text">
+                    <label class="font1">介绍：</label>
+                    <label id="管道描述">呼吸机管道，用于连接呼吸机机体和呼吸面罩，引导气流。</label>
+                </div>
+            </div>
+        <br/>
+            <div>
+                <div class="border_element select_text">
+                    <label class="font1">价格：</label>
+                    <label id="price_1" style="font-size: 30px"><b>12.79</b></label>
+                </div><br/>
+                <button id="select_bt_1" class="select_bt" style="font-size: 20px;font-weight: bold" onclick="change_bt_state(this.id)">添加至组装</button>
             </div>
         </div>
-        <br/>
-        <div>
-            <div class="border_element select_text">
-                <label class="font1">价格：</label>
-                <label><b>998.9</b></label>
-            </div><br/>
-            <button class="select_bt" style="font-size: 20px"><b>添加至组装</b></button>
-        </div>
     </div>
-</div>
-<div id="item_2" style="margin-top: 100px">
+    <div id="item_2" style="margin-top: 50px;margin-bottom: 50px">
     <div class="item">
         <div class="introduce_area">
             <img id="氧气罐" src="res/images/氧气罐.jpg" class="border_element" width="317" height="260" title="氧气罐图片" alt="氧气罐图片" >
@@ -85,13 +100,13 @@
         <div>
             <div class="border_element select_text">
                 <label class="font1">价格：</label>
-                <label><b>998.9</b></label>
+                <label id="price_2" style="font-size: 30px"><b>55.51</b></label>
             </div><br/>
-            <button class="select_bt" style="font-size: 20px"><b>添加至组装</b></button>
+            <button id="select_bt_2" class="select_bt" style="font-size: 20px;font-weight: bold" onclick="change_bt_state(this.id)">添加至组装</button>
         </div>
     </div>
 </div>
-<div id="item_3" style="margin-top: 100px">
+    <div id="item_3" style="margin-top: 50px;margin-bottom: 50px">
     <div class="item">
         <div class="introduce_area">
             <img id="温湿度控制器" src="res/images/温湿度控制器.jpg" class="border_element" width="317" height="260" title="温湿度控制器图片" alt="温湿度控制器图片" >
@@ -108,10 +123,123 @@
         <div>
             <div class="border_element select_text">
                 <label class="font1">价格：</label>
-                <label><b>998.9</b></label>
+                <label id="price_3" style="font-size: 30px"><b>46.98</b></label>
             </div><br/>
-            <button class="select_bt" style="font-size: 20px"><b>添加至组装</b></button>
+            <button id="select_bt_3" class="select_bt" style="font-size: 20px;font-weight: bold" onclick="change_bt_state(this.id)">添加至组装</button>
         </div>
+    </div>
+</div>
+    <div id="item_4" style="margin-top: 50px;margin-bottom: 50px">
+    <div class="item">
+        <div class="introduce_area">
+            <img id="便携结构" src="res/images/便携结构.jpg" class="border_element" width="317" height="260" title="便携结构图片" alt="便携结构图片" >
+            <div class="border_element introduce_text">
+                <label class="font1">介绍：</label>
+                <label id="便携结构描述">该模块有助于呼吸机的携带。
+                </label>
+            </div>
+        </div>
+        <br/>
+        <div>
+            <div class="border_element select_text">
+                <label class="font1">价格：</label>
+                <label id="price_4" style="font-size: 30px"><b>15.88</b></label>
+            </div><br/>
+            <button id="select_bt_4" class="select_bt" style="font-size: 20px;font-weight: bold" onclick="change_bt_state(this.id)">添加至组装</button>
+        </div>
+    </div>
+</div>
+    <div id="item_5" style="margin-top: 50px;margin-bottom: 50px">
+    <div class="item">
+        <div class="introduce_area">
+            <img id="涡轮离心风机" src="res/images/涡轮离心风机.jpg" class="border_element" width="317" height="260" title="涡轮离心风机图片" alt="涡轮离心风机图片" >
+            <div class="border_element introduce_text">
+                <label class="font1">介绍：</label>
+                <label id="涡轮离心风机描述">该模块实现了空气的吸入和呼出。
+                </label>
+            </div>
+        </div>
+        <br/>
+        <div>
+            <div class="border_element select_text">
+                <label class="font1">价格：</label>
+                <label id="price_5" style="font-size: 30px"><b>76.65</b></label>
+            </div><br/>
+            <button id="select_bt_5" class="select_bt" style="font-size: 20px;font-weight: bold" onclick="change_bt_state(this.id)">添加至组装</button>
+        </div>
+    </div>
+</div>
+    <div id="item_6" style="margin-top: 50px;margin-bottom: 50px">
+    <div class="item">
+        <div class="introduce_area">
+            <img id="出气口" src="res/images/出气口.jpg" class="border_element" width="317" height="260" title="出气口图片" alt="出气口图片" >
+            <div class="border_element introduce_text">
+                <label class="font1">介绍：</label>
+                <label id="出气口描述">呼吸机出气口，连接管道。
+                </label>
+            </div>
+        </div>
+        <br/>
+        <div>
+            <div class="border_element select_text">
+                <label class="font1">价格：</label>
+                <label id="price_6" style="font-size: 30px"><b>24.59</b></label>
+            </div><br/>
+            <button id="select_bt_6" class="select_bt" style="font-size: 20px;font-weight: bold" onclick="change_bt_state(this.id)">添加至组装</button>
+        </div>
+    </div>
+</div>
+    <div id="item_7" style="margin-top: 50px;margin-bottom: 50px">
+    <div class="item">
+        <div class="introduce_area">
+            <img id="呼吸面罩" src="res/images/呼吸面罩.jpg" class="border_element" width="317" height="260" title="呼吸面罩图片" alt="呼吸面罩图片" >
+            <div class="border_element introduce_text">
+                <label class="font1">介绍：</label>
+                <label id="呼吸面罩描述">呼吸面罩，佩戴用于呼吸。
+                </label>
+            </div>
+        </div>
+        <br/>
+        <div>
+            <div class="border_element select_text">
+                <label class="font1">价格：</label>
+                <label id="price_7" style="font-size: 30px"><b>24.59</b></label>
+            </div><br/>
+            <button id="select_bt_7" class="select_bt" style="font-size: 20px;font-weight: bold" onclick="change_bt_state(this.id)">添加至组装</button>
+        </div>
+    </div>
+</div>
+    <div id="item_8" style="margin-top: 50px;margin-bottom: 50px">
+    <div class="item">
+        <div class="introduce_area">
+            <img id="过滤层" src="res/images/过滤层.jpg" class="border_element" width="317" height="260" title="过滤层图片" alt="过滤层图片" >
+            <div class="border_element introduce_text">
+                <label class="font1">介绍：</label>
+                <label id="过滤层描述">过滤层，分为阻水层-过滤层-阻水层三层结构，
+                    用于过滤空气中的杂质、有毒气体、病毒细菌等。
+                </label>
+            </div>
+        </div>
+        <br/>
+        <div>
+            <div class="border_element select_text">
+                <label class="font1">价格：</label>
+                <label id="price_8" style="font-size: 30px"><b>19.65</b></label>
+            </div><br/>
+            <button id="select_bt_8" class="select_bt" style="font-size: 20px;font-weight: bold" onclick="change_bt_state(this.id)">添加至组装</button>
+        </div>
+    </div>
+</div>
+</div>
+<div style="margin-top: 50px;margin-bottom: 100px">
+    <div class="font1" style="display: flex;justify-content: space-between">
+        <div class="border_element" style="padding: 25px 10px 10px 10px;width: 400px;font-size: 40px;color: white;font-weight: bold;">
+            <label>总金额：</label>
+            <label id="price_all">0.00</label>
+        </div>
+        <button style="margin-right: 100px;border-radius: 15px / 50%;cursor: pointer;margin-right: 100px" onclick="go_payment()">
+            <input type="image" src="res/images/buy.png">
+        </button>
     </div>
 </div>
 </body>
