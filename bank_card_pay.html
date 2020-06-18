@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>银行卡支付</title>
+    <script type="text/javascript">
+        function save_inf() {
+            let un = document.getElementsByName("card_num");
+            let pw = document.getElementsByName("password");
+            //用户信息处理代码...
+            confirm("购买成功！");
+            window.close(); //关闭当前窗口
+        }
+    </script>
+</head>
+<body background="res/images/购物车.png">
+<div style="margin: 70px 50px">
+    <form method="post">
+        <label style="font-weight: bold">卡号：</label>
+        <label>
+            <input type="text" placeholder="请输入卡号" name="card_num">
+        </label><br/><br/>
+        <label style="font-weight: bold">密码：</label>
+        <label>
+            <input type="password" placeholder="请输入密码" name="password">
+        </label><br/><br/><br/><br/>
+        <input type="submit" value="确认付款" style="margin-left: 100px;font-size: 20px;font-weight: bold" onclick="save_inf()">
+        </form>
+</div>
+</body>
+</html>

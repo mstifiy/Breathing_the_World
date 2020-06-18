@@ -12,6 +12,7 @@
             Inf[1] = str.split("&")[1].replace("price_all=","")
             return Inf;
         }
+
         function load() {
             let inf = get_value();
             let match = inf[0];
@@ -25,6 +26,18 @@
                 document.getElementById("item_" + (i + 1).toString()).disabled = true;
             }
             document.getElementById("price_all").innerText = price_all;
+        }
+
+        function go_bank_card() {
+            window.open("bank_card_pay.html","_blank","toolbar=yes"+
+                " location=no, directories=no, status=no, menubar=yes, top=100px, left=200px" +
+                "scrollbars=no, resizable=no, copy history=yes, width=400, height=400")
+        }
+
+        function go_wechat() {
+            window.open("wechat_pay.html","_blank","toolbar=yes"+
+                " location=no, directories=no, status=no, menubar=yes, top=100px, left=200px" +
+                "scrollbars=no, resizable=no, copy history=yes, width=400, height=400")
         }
     </script>
 </head>
@@ -46,34 +59,50 @@
                     <tbody>
                     <tr>
                         <td ><label>
-                            <input id="item_1" type="checkbox">
+                            <input type="checkbox" value="0" class="check_view_state"
+                                   id="item_1" style="display: none;">
+                            <label for="item_1"></label>
                         </label>管道</td>
                         <td><label>
-                            <input id="item_2" type="checkbox">
+                            <input type="checkbox" value="0" class="check_view_state"
+                                   id="item_2" style="display: none;">
+                            <label for="item_2"></label>
                         </label>氧气罐</td>
                     </tr>
                     <tr>
                         <td><label>
-                            <input id="item_3" type="checkbox">
+                            <input type="checkbox" value="0" class="check_view_state"
+                                   id="item_3" style="display: none;">
+                            <label for="item_3"></label>
                         </label>温湿度控制器</td>
                         <td><label>
-                            <input id="item_4" type="checkbox">
+                            <input type="checkbox" value="0" class="check_view_state"
+                                   id="item_4" style="display: none;">
+                            <label for="item_4"></label>
                         </label>便携结构</td>
                     </tr>
                     <tr>
                         <td><label>
-                            <input id="item_5" type="checkbox">
+                            <input type="checkbox" value="0" class="check_view_state"
+                                   id="item_5" style="display: none;">
+                            <label for="item_5"></label>
                         </label>涡轮机呼吸</td>
                         <td><label>
-                            <input id="item_6" type="checkbox">
+                            <input type="checkbox" value="0" class="check_view_state"
+                                   id="item_6" style="display: none;">
+                            <label for="item_6"></label>
                         </label>出气口</td>
                     </tr>
                     <tr>
                         <td><label>
-                            <input id="item_7" type="checkbox">
+                            <input type="checkbox" value="0" class="check_view_state"
+                                   id="item_7" style="display: none;">
+                            <label for="item_7"></label>
                         </label>面罩</td>
                         <td><label>
-                            <input id="item_8" type="checkbox">
+                            <input type="checkbox" value="0" class="check_view_state"
+                                   id="item_8" style="display: none;">
+                            <label for="item_8"></label>
                         </label>过滤层</td>
                     </tr>
                     </tbody>
@@ -86,13 +115,13 @@
         </div>
     </div>
 </div>
-<div>
+<div class="payment-way">
     <p><h1>支付方式</h1>
-    <button class="pay_way">
-        <input type="image" src="res/images/yinhangkazhifu.png">
+    <button class="pay_way" onclick="go_bank_card()">
+        <input type="image" src="res/images/bank_card.png" alt="bank_card">
     </button>
-    <button class="pay_way" style="margin-right: 10px">
-        <input type="image" src="res/images/weichat.png">
+    <button class="pay_way" style="margin-right: 10px" onclick="go_wechat()">
+        <input type="image" src="res/images/wechat.png" alt="wechat">
     </button>
 </div>
 </body>
